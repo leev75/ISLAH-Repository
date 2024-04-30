@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+body::before{
+    content: '';
+    display: block;
+    height: 80PX;
+}
+/* navigationbare*/
+
+
+.navbar {
+    background-color:#f2f2f2; 
+    display: flex;
+   
+}
+
+.navbar span{
+    font-family: IBM Plex Sans Arabic;
+    font-size: 25px;
+    color: #198754;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    
+    
+    
+}
+.navbar-nav .nav-link {
+    position: relative;
+    padding-bottom: 5px;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after {
+    background-color: #198754; 
+}
+
+
+#hero span{
+    font-family:IBM Plex Sans Arabic ;
+    font-weight: bolder;
+    
+    color:#198754 ;
+}
+
+
+
+/* cards*/
+.card{
+    
+    
+    align-items: center;
+    margin: 10px 50px;
+    background:#fff ;
+    box-shadow: 0 0 15px rgba(0, 0, 0,4);
+    align-self: normal;
+
+}
+.card p{
+    font-size: 15px;
+    font-family: "IBM Plex Sans Arabic";
+    font-weight: 500;
+
+}
+.card img{
+    width: 200px;
+    height: 150px;
+}
+.cards h1{
+    font-size: 30px;
+    font-family: "IBM Plex Sans Arabic";
+    font-weight: 500;
+    color:#198754 ;
+}
+.cards p{
+    font-size: 20px;
+
+}
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+

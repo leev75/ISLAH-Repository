@@ -1,0 +1,55 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model  User {
+
+  user_id       Int             @id @default(autoincrement())
+  phoneNumber         String          @unique
+  password      String
+  name      String          @unique
+
+ reports       Raport[]
+  votes         Vote[]
+
+}
+
+
+model Manager {
+  key       String @id @unique
+  password  String
+  categorie String @unique
+
+  reports       Raport[]
+}
+
+model Raport {
+  report_id    Int      @id @default(autoincrement())
+  location     String   @db.VarChar(100)
+  image        String?  
+  description  String   @db.Text
+  date         DateTime @default(now())
+  categorie    String
+  status       String   @default("Reported")
+  nbr_Of_Votes Int      @default(0)
+  edited       Boolean  @default(false)
+
+  userId        Int
+  user          User           @relation(fields: [userId], references: [user_id])
+  manager       Manager        @relation(fields: [categorie], references: [categorie])
+  votes         Vote[]
+}
+
+model Vote {
+  reportId Int
+  userId   Int @id
+
+  report Raport @relation(fields: [reportId], references: [report_id])
+  user   User   @relation(fields: [userId], references: [user_id])
+}

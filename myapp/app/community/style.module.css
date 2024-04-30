@@ -1,0 +1,98 @@
+/* navigationbare*/
+/*body::before {
+    content: '';
+    display: block;
+    height: 100px;
+}*/
+
+/* Navbar */
+/* Navbar */
+.navbar {
+  height: 100px;
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Text color */
+  padding: 10px 0; /* Padding for the navbar */
+  text-align: center; /* Center-align text */
+}
+
+/* Sort dropdown */
+.sort-container {
+  margin-bottom: 20px;
+}
+
+.sort-label {
+  font-weight: bold;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #28a745; /* Green */
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #218838; /* Darker Green */
+}
+
+/* Examples */
+.examples-container {
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  min-height: calc(
+    100vh - 120px
+  ); /* Set minimum height to fill viewport minus navbar height and padding */
+  margin: 0 auto; /* Center horizontally */
+  max-width: 800px; /* Set maximum width */
+}
+
+.example {
+  width: 100%; /* Occupy full width */
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.example-image {
+  max-width: 100%; /* Set maximum width */
+  max-height: 250px; /* Set maximum height */
+  height: auto; /* Ensure aspect ratio is maintained */
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.info span {
+  font-weight: bold;
+  color: #333;
+}
+
+.vote-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.vote-button {
+  padding: 10px 20px;
+  background-color: #28a745; /* Green */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.vote-button:hover {
+  background-color: #218838;
+}

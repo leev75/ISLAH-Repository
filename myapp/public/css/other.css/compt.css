@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+
+
+
+body::before{
+    content: '';
+    display: block;
+    height: 80PX;
+}
+/* navigationbare*/
+
+
+.navbar {
+    background-color:#f2f2f2; 
+    display: flex;
+   
+}
+.navbar span{
+    font-family: IBM Plex Sans Arabic;
+    font-size: 25px;
+    color: #198754;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    
+    
+    
+}

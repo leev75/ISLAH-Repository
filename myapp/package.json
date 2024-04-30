@@ -1,0 +1,32 @@
+{
+  "name": "myapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@prisma/client": "^5.11.0",
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.2",
+    "google-map-react": "^2.2.1",
+    "jwt-decode": "^4.0.0",
+    "next": "14.1",
+    "next-cookies": "^2.0.3",
+    "react": "^18",
+    "react-bootstrap": "^2.10.2",
+    "react-chartjs-2": "^5.2.0",
+    "react-cookie": "^7.1.4",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "prisma": "^5.11.0"
+  }
+}
