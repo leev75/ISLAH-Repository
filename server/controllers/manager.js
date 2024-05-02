@@ -57,24 +57,119 @@ const login = async (req, res) => {
 
 //validation
 const validate = async (req, res) => {
-  const validate = req.query.status;
+  const { status,report_id } = req.body;
+  
+  console.log(status);
+  console.log(report_id);
 
-  await prisma.raport.update({
+  // Update the status of the report
+  const report = await prisma.raport.update({
     where: {
-      report_id: parseInt(req.params.id),
+      report_id: report_id,
     },
     data: {
-      status: validate,
+      status,
     },
   });
+
+  /*if (status === "Completed" || status === `Rejected`) {
+    if (status === `Completed`) {
+      const time = 60 * 1000;
+    } // 1 month in milliseconds
+    else {
+      const time = 30 * 1000; // 1 month in milliseconds}
+
+      // Schedule deletion using setTimeout
+      setTimeout(async () => {
+        // Delete related records first
+        await prisma.vote.deleteMany({
+          where: {
+            reportId: report_id,
+          },
+        });
+
+        // Then delete the report
+        await prisma.raport.delete({
+          where: {
+            report_id,
+          },
+        });
+      }, time);
+    }*/
+
   res.status(200).send(`validated`);
 };
-
 //logout
 const logout = (req, res) => {
   res.clearCookie("managerToken");
   res.send("Logged out");
   res.redirect(`/`);
 };
+const totalReports = async (req, res) => {
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
 
-module.exports = { checkAuth, login, validate, logout };
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+  try {
+    const reportedCount = await prisma.raport.count({
+      where: {
+        categorie: decoded.categorie,
+        status: "Reported",
+      },
+    });
+
+    const inProgressCount = await prisma.raport.count({
+      where: {
+        categorie: decoded.categorie,
+        status: "In_Progress",
+      },
+    });
+
+    const rejectedCount = await prisma.raport.count({
+      where: {
+        categorie: decoded.categorie,
+        status: "refused",
+      },
+    });
+
+    const data = {
+      labels: ["Reported", "In Progress", "Rejected"],
+      counts: [reportedCount, inProgressCount, rejectedCount],
+    };
+
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      labels: [],
+      counts: [],
+    });
+  }
+};
+
+const hourlyReports = async (req, res) => {
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+  const oneHourAgo = new Date(Date.now() - 3600000); // 3600000 milliseconds = 1 hour
+  const reports = await prisma.raport.findMany({
+    where: {
+      categorie: decoded.categorie,
+      date: {
+        gt: oneHourAgo,
+      },
+    },
+  });
+  res.status(200).json(reports.length);
+};
+
+module.exports = {
+  hourlyReports,
+  checkAuth,
+  totalReports,
+  login,
+  validate,
+  logout,
+};

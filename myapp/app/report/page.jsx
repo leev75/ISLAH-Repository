@@ -3,6 +3,8 @@ import { useAuth } from "@/app/hook/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { Button } from "react-bootstrap";
+const url = "/imgs/profile.svg";
 
 const ReportForm = () => {
   const [location, setLocation] = useState("");
@@ -13,10 +15,10 @@ const ReportForm = () => {
   const { isLoggedIn, authToken } = useAuth();
 
   const categories = [
-    { value: "water", label: "Electronics" },
-    { value: "Electricity / Gaz", label: "Fashion" },
-    { value: "ONA", label: "Home" },
-    { value: "Telecominication", label: "Other" },
+    { value: "water", label: "water" },
+    { value: "Electricity / Gaz", label: "Electricity / Gaz" },
+    { value: "ONA", label: "ONA" },
+    { value: "Telecominication", label: "Telecominication" },
     //...
   ];
 
@@ -42,7 +44,7 @@ const ReportForm = () => {
         config
       );
       console.log(response.data);
-      alert("secces");
+      alert("التقرير تم بنجاح");
     } catch (error) {
       console.error(error);
       setErrorMessage(error.message || "An error occurred. Please try again.");
@@ -60,33 +62,54 @@ const ReportForm = () => {
           <>
             <div
               className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column right-box"
-              style={{ background: "#fff" }}
+              style={{
+                background: "#f7f7f7",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                padding: 20,
+              }}
             >
               <p
                 className="text-success fs-2"
                 style={{
                   fontFamily: '"IBM Plex Sans Arabic", Courier, monospace',
                   fontWeight: 600,
+                  color: "#34C759",
                 }}
               >
                 إبلاغ
               </p>
             </div>
-            <div className="col-md-6 left-box py-2">
+            <div
+              className="col-md-6 left-box py-2"
+              style={{ background: "#fff" }}
+            >
               <div
                 className="row align-items-center"
                 style={{ direction: "rtl" }}
               >
                 <div className="header-text mb-4">
-                  <h2>بلغ و شارك في إيجاد الحلول</h2>
+                  <h2 style={{ color: "#333", fontSize: 24, fontWeight: 600 }}>
+                    بلغ و شارك في إيجاد الحلول
+                  </h2>
                 </div>
                 <form onSubmit={handleSubmit}>
-                  <div className="input-group mb-3">
+                  <div style={{ marginBottom: 16 }}>
                     <select
-                      className="form-control form-control-lg bg-light fs-6"
                       value={categorie}
                       onChange={(e) => setCategorie(e.target.value)}
                       required
+                      style={{
+                        width: "100%",
+                        padding: "12px 20px",
+                        margin: "8px 0",
+                        display: "inline-block",
+                        border: "1px solid #ddd",
+                        borderRadius: "4px",
+                        boxSizing: "border-box",
+                        fontSize: 16,
+                        fontWeight: 400,
+                        color: "#666",
+                      }}
                     >
                       <option value="">Select a category</option>
                       {categories.map((category, index) => (
@@ -96,35 +119,105 @@ const ReportForm = () => {
                       ))}
                     </select>
                   </div>
-                  <div className="input-group mb-3">
+                  <div style={{ marginBottom: 16 }}>
                     <input
                       type="text"
-                      className="form-control form-control-lg bg-light fs-6"
-                      placeholder="الموقع"
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
+                      placeholder="الموقع"
+                      style={{
+                        width: "100%",
+                        padding: "12px 20px",
+                        margin: "8px 0",
+                        display: "inline-block",
+                        border: "1px solid #ddd",
+                        borderRadius: "4px",
+                        boxSizing: "border-box",
+                        fontSize: 16,
+                        fontWeight: 400,
+                        color: "#666",
+                      }}
                     />
                   </div>
-                  <div className="input-group mb-3">
+                  <div style={{ marginBottom: 16 }}>
                     <textarea
-                      className="form-control form-control-lg bg-light fs-6"
-                      placeholder="الوصف"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
+                      placeholder="الوصف"
+                      style={{
+                        width: "100%",
+                        padding: "12px 20px",
+                        margin: "8px 0",
+                        display: "inline-block",
+                        border: "1px solid #ddd",
+                        borderRadius: "4px",
+                        boxSizing: "border-box",
+                        fontSize: 16,
+                        fontWeight: 400,
+                        color: "#666",
+                      }}
                     />
                   </div>
-                  <div className="input-group mb-3">
-                    <input
-                      type="file"
-                      className="form-control form-control-lg bg-light fs-6"
-                      placeholder="أضف صورة"
-                      onChange={handleImageChange}
-                    />
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ position: "relative" }}>
+                      <input
+                        type="file"
+                        id="inputGroupFile"
+                        aria-describedby="inputGroupFileAddon"
+                        onChange={handleImageChange}
+                        style={{
+                          opacity: 0,
+                          position: "absolute",
+                          top: 0,
+                          right: 0,
+                          bottom: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "100%",
+                          cursor: "pointer",
+                        }}
+                      />
+                      <label
+                        htmlFor="inputGroupFile"
+                        style={{
+                          display: "block",
+                          padding: "12px 20px",
+                          margin: "8px 0",
+                          border: "1px solid #ddd",
+                          borderRadius: "4px",
+                          cursor: "pointer",
+                          fontSize: 16,
+                          fontWeight: 400,
+                          color: "#666",
+                        }}
+                      >
+                        أضف صورة
+                      </label>
+                    </div>
                   </div>
-                  <button type="submit">Submit</button>
+                  <Button
+                    variant="dark"
+                    type="submit"
+                    style={{
+                      width: "100%",
+                      padding: "12px 20px",
+                      margin: "8px 0",
+                      display: "inline-block",
+                      border: "none",
+                      borderRadius: "4px",
+                      boxSizing: "border-box",
+                      fontSize: 16,
+                      fontWeight: 600,
+                      color: "#fff",
+                      backgroundColor: "#34C759",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Submit
+                  </Button>
                 </form>
               </div>
-            </div>
+            </div>{" "}
           </>
         ) : (
           // Login prompt if not logged in
@@ -134,11 +227,17 @@ const ReportForm = () => {
                 <div className="border rounded-5 p-3 p-lg-5 bg-white text-center shadow">
                   <h2>يجب تسجيل الدخول للإبلاغ عن المشكل</h2>
                   <div className="featured-image mb-3">
-                    <img
-                      src="public/imgs/pagevide.svg"
+                    <image
+                      src={url}
                       className="img-fluid"
                       alt="Description"
-                      style={{ maxWidth: "200px" }}
+                      style={{
+                        maxWidth: "200px",
+                        width: "100%",
+                        height: "auto",
+                      }}
+                      width={200}
+                      height={200}
                     />
                   </div>
                   <div>

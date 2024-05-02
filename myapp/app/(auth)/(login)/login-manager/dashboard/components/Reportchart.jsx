@@ -47,10 +47,29 @@ function Reportchart() {
     },
   };
   return (
-    <div style={{ width: "380px", height: "380px", marginLeft: "20px" }}>
-      <h1>Line chart for number of created accountes by user in 1H</h1>
-      <Line data={data} options={options}></Line>
+    <div>
+      <div className="chart-container">
+        <Line data={data} options={options} />
+        <h1 className="chart-title">Users by hour</h1>
+      </div>
     </div>
   );
 }
+
+<style jsx>{`
+  .chart-container {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .chart-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+`}</style>;
+
 export default Reportchart;

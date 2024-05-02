@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const multer = require(`multer`);
 const cloudinary = require("cloudinary").v2;
 
-const checkAuth = require(`../middleware/checkAuth`);
+const checkAuthentication = require(`../middleware/checkAuth`);
 const {
   submitReport,
   editReport,
@@ -32,15 +32,25 @@ cloudinary.config({
 });
 
 //route that will be used by our protected routes
-router.get("/", checkAuth, getReport);
+router.get("/", checkAuthentication, getReport);
 
 //submit report
-router.post(`/submit-report`, checkAuth, upload.single(`image`), submitReport);
+router.post(
+  `/submit-report`,
+  checkAuthentication,
+  upload.single(`image`),
+  submitReport
+);
 
 //edit report
-router.put("/edit-report/:id", checkAuth, upload.single(`image`), editReport);
+router.put(
+  "/edit-report/:id",
+  checkAuthentication,
+  upload.single(`image`),
+  editReport
+);
 
 //delete report
-router.delete(`/delete-report/:id`, checkAuth, deleteReport);
+router.delete("/delete-report/:id", checkAuthentication, deleteReport);
 
 module.exports = router;

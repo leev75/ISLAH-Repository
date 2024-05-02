@@ -1,10 +1,10 @@
 "use client";
-import Image from "react-bootstrap";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/app/hook/useAuth";
-import "@/public/css/all.css/style.css"; // Adjusted import for CSS
-
+import { ImageResponse } from "next/server";
+const url = "/imgs/trov.png";
 export default function LoginPage() {
   const { login } = useAuth();
 
@@ -51,25 +51,42 @@ export default function LoginPage() {
     }
   };
   return (
-    <div className="container d-flex justify-content-center align-items-center min-vh-100">
-      <div className="row border rounded-5 p-3 bg-white shadow box-area">
+    <div
+      className="container d-flex justify-content-center align-items-center min-vh-100"
+      style={{ backgroundColor: "#f5f5f5" }}
+    >
+      <div
+        className="row border rounded-5 p-3 bg-white shadow box-area"
+        style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}
+      >
         <div
           className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
-          style={{ background: "#fff" }}
+          style={{
+            backgroundColor: "#fff",
+            padding: "20px",
+            borderRadius: "10px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+          }}
         >
           <div className="featured-image mb-3">
-            <img
-              src="assets/imgs/logoo.png_transparent_Plan de travail 1.png"
+            <Image
+              src={url}
+              alt="logo"
               className="img-fluid"
-              style={{ width: "250px" }}
+              style={{
+                width: "250px",
+                borderRadius: "10px",
+              }}
+              width={250}
+              height={30}
             />
           </div>
           <p
             className="text-success fs-2"
             style={{
-              fontFamily:
-                "'font-family: IBM Plex Sans Arabic;', Courier, monospace",
+              fontFamily: "'IBM Plex Sans Arabic;', Courier, monospace",
               fontWeight: 600,
+              color: "#34C759",
             }}
           >
             إصلاح
@@ -79,16 +96,17 @@ export default function LoginPage() {
             style={{
               width: "17rem",
               fontFamily: "'Courier New', Courier, monospace",
+              color: "#333",
             }}
           >
             إنضم إلينا
           </small>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="col-md-6 right-box">
+          <div className="col-md-6 right-box" style={{ padding: "20px" }}>
             <div className="row align-items-center">
               <div className="header-text mb-4 d-flex flex-row-reverse">
-                <h2>مرحبًا مرة أخرى</h2>
+                <h2 style={{ color: "#333" }}>مرحبًا مرة أخرى</h2>
               </div>
 
               <div className="input-group mb-3">
@@ -101,6 +119,11 @@ export default function LoginPage() {
                   className="form-control form-control-lg bg-light fs-6 text-end"
                   placeholder="رقم الهاتف"
                   required
+                  style={{
+                    borderColor: "#ccc",
+                    borderRadius: "10px",
+                    padding: "10px",
+                  }}
                 />
               </div>
 
@@ -114,12 +137,21 @@ export default function LoginPage() {
                   className="form-control form-control-lg bg-light fs-6 text-end"
                   placeholder="كلمة المرور"
                   required
+                  style={{
+                    borderColor: "#ccc",
+                    borderRadius: "10px",
+                    padding: "10px",
+                  }}
                 />
               </div>
               <div className="input-group mb-5 d-flex justify-content-between">
                 <div className="forgot">
                   <small>
-                    <Link className="link-success" href="/login/Reset_password">
+                    <Link
+                      className="link-success"
+                      href="/login/Reset_password"
+                      style={{ color: "#34C759" }}
+                    >
                       هل نسيت كلمة المرور؟
                     </Link>
                   </small>
@@ -129,24 +161,45 @@ export default function LoginPage() {
                 <button
                   className="btn btn-lg btn-success w-100 fs-6"
                   type="submit"
+                  style={{
+                    backgroundColor: "#34C759",
+                    color: "#fff",
+                    borderRadius: "10px",
+                    padding: "10px",
+                  }}
                 >
                   تسجيل الدخول
                 </button>
                 {isSubmitted ? (
-                  <div className="alert alert-success" role="alert">
+                  <div
+                    className="alert alert-success"
+                    role="alert"
+                    style={{ backgroundColor: "#34C759", color: "#fff" }}
+                  >
                     تم تسجيل الدخول
-                    <Link href="/">الرئيسية</Link>.
+                    <Link href="/" style={{ color: "#fff" }}>
+                      الرئيسية
+                    </Link>
+                    .
                   </div>
                 ) : submitError ? (
-                  <div className="alert alert-danger" role="alert">
+                  <div
+                    className="alert alert-danger"
+                    role="alert"
+                    style={{ backgroundColor: "#FFC080", color: "#fff" }}
+                  >
                     {submitError}
                   </div>
                 ) : null}
               </div>
 
               <div className="row">
-                <small>ليس لديك حساب؟ </small>
-                <Link className="link-success" href="/sign">
+                <small style={{ color: "#333" }}>ليس لديك حساب؟ </small>
+                <Link
+                  className="link-success"
+                  href="/sign"
+                  style={{ color: "#34C759" }}
+                >
                   register
                 </Link>
               </div>

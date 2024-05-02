@@ -13,4 +13,21 @@ const getUsersByCategorie = async (req, res) => {
   res.status(200).send(users);
 };
 
-module.exports = { getUsersByCategorie };
+const getUsersByCategorieV2 = async (req, res) => {
+  const categorie = req.body.categorie;
+
+  const users = await prisma.user.findMany({
+    where: {
+      reports: {
+        some: {
+          categorie,
+        },
+      },
+    },
+    distinct: ["user_id"],
+  });
+
+  res.status(200).send(users);
+};
+
+module.exports = { getUsersByCategorie, getUsersByCategorieV2 };

@@ -37,7 +37,7 @@ const register = async (req, res) => {
         },
       });
 
-      const token = generateToken(res,newUser.user_id);
+      const token = generateToken(res, newUser.user_id);
       return res
         .status(201)
         .json({ message: "تم تسجيل المستخدم بنجاح", token });
@@ -81,64 +81,72 @@ const login = async (req, res) => {
   }
 };
 
-const change_password = async (req, res) => {
-  const token = req.cookies.token;
+const changeInfo = async (req, res) => {
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
+
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  const { oldpass, newpass, re_newpass } = req.body;
+  const userId = decoded.userId;
 
-  const user = await prisma.user.findUnique({
-    where: { user_id: decoded.userId },
-  });
+  const { newName, newPhoneNumber, newPassword } = req.body;
 
-  bcrypt.compare(oldpass, user.password, async (err, result) => {
-    if (err) return res.status(500).send(err);
-    if (!result) return res.status(401).send(`wrong password, try again`);
+  if (!newName && !newPhoneNumber && !newPassword) {
+    return res.status(401).json("No data provided");
+  }
 
-    if (newpass === re_newpass) {
+  try {
+    // update name
+    if (newName) {
       await prisma.user.update({
-        where: { user_id: decoded.userId },
-        data: { password: bcrypt.hashSync(newpass, 10) },
+        where: { user_id: userId },
+        data: { name: newName },
       });
-      res
-        .status(200)
-        .json({ oldpass, newpass, message: "password updated successfully" });
-      //send(`password updated successfully`);
     }
-  });
+
+    // update phone number
+    if (newPhoneNumber) {
+      await prisma.user.update({
+        where: { user_id: userId },
+        data: { phoneNumber: newPhoneNumber },
+      });
+    }
+
+    // update password
+    if (newPassword) {
+      const user = await prisma.user.findUnique({
+        where: { user_id: userId },
+      });
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await prisma.user.update({
+        where: { user_id: userId },
+        data: { password: hashedPassword },
+      });
+    }
+
+    res.status(200).send(`Info updated successfully`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(`Error updating info: ${error.message}`);
+  }
 };
 
-const change_name = async (req, res) => {
-  const token = req.cookies.token;
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  const { name } = decoded;
-  const { new_name } = req.body;
-
-  await prisma.user.update({
-    where: { user_id: decoded.userId },
-    data: { name: new_name },
-  });
-  res
-    .status(200)
-    .send({ message: `name updated successfully`, new_name, name });
-};
-
-const change_tel = async (req, res) => {
-  const token = req.cookies.token;
+const getReport = async (req, res) => {
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-  const { new_phone_number } = req.body;
-
-  await prisma.user.update({
-    where: { user_id: decoded.userId },
-    data: { name: new_phone_number },
+  const reports = await prisma.raport.findMany({
+    where: {
+      userId: decoded.userId,
+    },
   });
-  res.status(200).send(`phone number updated successfully`);
+  res.status(200).send(reports);
 };
 
 module.exports = {
   register,
   login,
-  change_name,
-  change_password,
-  change_tel,
+  changeInfo,
+  getReport,
 };

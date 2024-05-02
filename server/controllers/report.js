@@ -74,11 +74,25 @@ const submitReport = async (req, res) => {
       res.status(200).json({ message: "Reported submitted successfully" });
     }
   );
+
+  await prisma.user.update({
+    where: {
+      user_id: decoded.userId,
+    },
+    data: {
+      nbr_of_reports: {
+        increment: 1,
+      },
+    },
+  });
+
+  res.status(200).send(`Reported submitted successfully`);
 };
 
 const editReport = async (req, res) => {
-  const token = req.cookies.token;
-  const decoded = jwt.verify(token, `jwt-secret-key`);
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
   const updateFields = {};
 
@@ -86,7 +100,7 @@ const editReport = async (req, res) => {
 
   if (req.body.categorie) updateFields.categorie = req.body.categorie;
 
-  if (req.file.path) updateFields.image = req.file.path;
+  if (req.file) updateFields.image = req.file.path;
 
   if (req.body.description) updateFields.description = req.body.description;
 
@@ -141,13 +155,23 @@ const editReport = async (req, res) => {
 };
 
 const deleteReport = async (req, res) => {
-  const token = req.cookies.token;
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const report_id = parseInt(req.params.id);
+
+  console.log(report_id);
+
+  await prisma.vote.deleteMany({
+    where: {
+      reportId: report_id,
+    },
+  });
 
   await prisma.raport.delete({
     where: {
       userId: decoded.userId,
-      report_id: parseInt(req.params.id),
+      report_id,
     },
   });
 

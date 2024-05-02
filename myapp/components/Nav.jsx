@@ -20,16 +20,24 @@ function Nav() {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm  fixed-top">
+    <nav
+      className="navbar navbar-expand-sm fixed-top"
+      style={{ background: "#34C759", padding: "0 1rem" }}
+    >
       <div className="container-fluid d-flex flex-row-reverse">
-        <Link className="nav-link" href="/">
+        <Link
+          href="/"
+          className="nav-link"
+          style={{ textDecoration: "none", color: "#fff" }}
+        >
           <Image
             src="/imgs/logoo.png_transparent_Plan de travail 1.png"
             alt="Logo"
             width={60}
             height={80}
+            style={{ marginRight: "1rem" }}
           />
-          <span>إصلاح</span>
+          <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>إصلاح</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -39,53 +47,162 @@ function Nav() {
           aria-controls="mainmenu"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={{ background: "#fff", color: "#34C759", border: "none" }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="  collapse navbar-collapse ms-auto" id="mainmenu">
-          <ul className=" navbar-nav me-auto ">
+        <div className="collapse navbar-collapse ms-auto" id="mainmenu">
+          <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link href="/about" className="nav-link">
-                <Button variant="outline-success">حول</Button>
+              <Link
+                href="/community"
+                className="nav-link"
+                style={{
+                  color: "#fff",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "0.25rem",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <Button
+                  variant="outline-success"
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: "#fff",
+                    padding: 0,
+                  }}
+                >
+                  مجتمع
+                </Button>
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/login-manager" className="nav-link">
-                <Button variant="outline-success">تسجيل الدخول للمدير</Button>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/report" className="nav-link">
-                <Button variant="outline-success">ابلاغ</Button>
+              <Link
+                href="/report"
+                className="nav-link"
+                style={{
+                  color: "#fff",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "0.25rem",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <Button
+                  variant="outline-success"
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: "#fff",
+                    padding: 0,
+                  }}
+                >
+                  ابلاغ
+                </Button>
               </Link>
             </li>
             {isLoggedIn() ? (
               <>
                 <li className="nav-item">
-                  <Button variant="outline-success" onClick={handleLogout}>
+                  <Button
+                    variant="outline-success"
+                    onClick={handleLogout}
+                    style={{
+                      color: "#fff",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "0.25rem",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
                     تسجيل خروج
                   </Button>
                 </li>
 
                 <li className="nav-item">
-                  <Link href="/login-user/profile">
-                    <Button variant="outline-success">ٍحساب</Button>
+                  <Link
+                    href="/login-user/profile"
+                    className="nav-link"
+                    style={{
+                      color: "#fff",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "0.25rem",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    <Button
+                      variant="outline-success"
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        color: "#fff",
+                        padding: 0,
+                      }}
+                    >
+                      حساب
+                    </Button>
                   </Link>
                 </li>
               </>
             ) : (
-              <Link href="/login-user">
-                <Button variant="outline-success">تسجيل الدخول للمستخدم</Button>
+              <Link
+                href="/login-user"
+                className="nav-link"
+                style={{
+                  color: "#fff",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "0.25rem",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <Button
+                  variant="outline-success"
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: "#fff",
+                    padding: 0,
+                  }}
+                >
+                  تسجيل الدخول للمستخدم
+                </Button>
               </Link>
             )}
 
             {isManagerLoggedIn() ? (
-              <Button variant="outline-success" onClick={handleLogoutManager}>
+              <Button
+                variant="outline-success"
+                onClick={handleLogoutManager}
+                style={{
+                  color: "#fff",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "0.25rem",
+                  transition: "all 0.3s ease",
+                }}
+              >
                 تسجيل خروج المدير
               </Button>
             ) : (
-              <Link href="/login-manager" className="nav-link">
-                <Button variant="outline-success">تسجيل الدخول للمدير</Button>
+              <Link
+                href="/login-manager"
+                className="nav-link"
+                style={{
+                  color: "#fff",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "0.25rem",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <Button
+                  variant="outline-success"
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: "#fff",
+                    padding: 0,
+                  }}
+                >
+                  تسجيل الدخول للمدير
+                </Button>
               </Link>
             )}
           </ul>

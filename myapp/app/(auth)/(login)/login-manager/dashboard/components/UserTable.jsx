@@ -12,7 +12,7 @@ const UserTable = ({ managerCategory, managerAuthToken }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/auth/GetUsers", {
+        const res = await fetch("http://localhost:5000/api/auth/GetUsersV2", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -39,31 +39,94 @@ const UserTable = ({ managerCategory, managerAuthToken }) => {
     fetchUsers();
   }, [managerCategory]); // added dependency to re-run effect when ManagerCategory changes
 
+  console.log(users.map((user) => user.user));
+
   return (
     <div>
-      <h1>User Table</h1>
-      <h1>{managerCategory}</h1>
-      <Table striped bordered hover size="sm" variant="light" borderless>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Number of Report</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.user.user_id}>
-              <td>{user.user.user_id}</td>
-              <td>{user.user.name}</td>
-              <td>{user.user.phoneNumber}</td>
-              <td>{user.report}</td>
+      <div className="user-table-container">
+        <h1 className="title">User Table</h1>
+
+        <h2 className="category">
+          <span
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              color: "#333",
+              marginRight: 10,
+              backgroundColor: "#ddd",
+              padding: 5,
+              borderRadius: 5,
+            }}
+          >
+            category:
+          </span>
+          {managerCategory}
+        </h2>
+
+        <Table
+          striped
+          bordered
+          hover
+          size="sm"
+          variant="light"
+          borderless
+          className="user-table"
+        >
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Phone Number</th>
+              <th>Number of Report</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-      {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.user_id}>
+                <td>{user.user_id}</td>
+                <td>{user.name}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.nbr_of_reports}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        {errorMessage && (
+          <div className="error-message" style={{ color: "red" }}>
+            {errorMessage}
+          </div>
+        )}
+      </div>
+      <style jsx>{`
+        .user-table-container {
+          padding: 20px;
+          background-color: #f7f7f7;
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+          font-weight: bold;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        .category {
+          font-size: 18px;
+          margin-bottom: 20px;
+        }
+
+        .user-table {
+          margin-bottom: 20px;
+        }
+
+        .error-message {
+          font-size: 16px;
+          color: red;
+          margin-top: 10px;
+        }
+      `}</style>
     </div>
   );
 };

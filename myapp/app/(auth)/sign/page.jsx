@@ -1,11 +1,10 @@
 "use client";
-import Image from "react-bootstrap";
-import "@/public/css/all.css/style.css";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/app/hook/useAuth";
 import { useRouter } from "next/router";
-
+const url = "imgs/people.svg";
 function Register() {
   const { login } = useAuth();
   const [userData, setUserData] = useState({
@@ -55,129 +54,191 @@ function Register() {
   };
 
   return (
-    <div>
-      {" "}
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        {" "}
-        <div className="row border rounded-5 p-3 bg-white shadow box-area">
-          {" "}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "800px",
+          margin: "40px auto",
+          padding: "20px",
+          backgroundColor: "#fff",
+          borderRadius: "10px",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: "20px",
+            backgroundColor: "#fff",
+            borderRadius: "10px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+          }}
+        >
           <div
-            className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
-            style={{ background: "#fff" }}
+            style={{
+              marginBottom: "20px",
+            }}
           >
-            {" "}
-            <div className="featured-image mb-3">
-              {" "}
-              <img
-                src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Flogin-nl&psig=AOvVaw0PJWJw0_LunLlyZYFJb2uO&ust=1712244071968000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNjy0cr3pIUDFQAAAAAdAAAAABAE"
-                alt="Logo"
-                style={{ width: "250px" }}
-              />{" "}
-            </div>{" "}
-            <p
-              className="text-success fs-2"
+            <Image
+              src={url}
+              alt="Logo"
               style={{
-                fontFamily: "'IBM Plex Sans Arabic', Courier, monospace",
-                fontWeight: 600,
+                width: "250px",
+                borderRadius: "10px",
+              }}
+              width={250}
+              height={250}
+            />
+          </div>
+          <p
+            style={{
+              fontSize: "24px",
+              fontWeight: 600,
+              color: "#28a745",
+              fontFamily: "'IBM Plex Sans Arabic', Courier, monospace",
+            }}
+          >
+            إصلاح
+          </p>
+          <p>hesdsdsds</p>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div
+            style={{
+              padding: "20px",
+              backgroundColor: "#fff",
+              borderRadius: "10px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div
+              style={{
+                marginBottom: "20px",
               }}
             >
-              {" "}
-              إصلاح{" "}
-            </p>{" "}
-            <p>hesdsdsds</p>{" "}
-          </div>{" "}
-          <form onSubmit={handleSubmit}>
-            <div className="col-md-6 right-box">
-              {" "}
-              <div className="row align-items-center">
-                {" "}
-                <div className="header-text mb-4  ">
-                  {" "}
-                  <h2>إنشاء حساب جديد</h2>{" "}
-                </div>{" "}
-                <div className="input-group mb-3">
-                  {" "}
-                  <input
-                    type="text"
-                    name="name"
-                    className="form-control form-control-lg bg-light fs-6"
-                    placeholder="الاسم الكامل"
-                    value={userData.name}
-                    onChange={handleChange}
-                    required
-                  />{" "}
-                </div>{" "}
-                <div className="input-group mb-3">
-                  {" "}
-                  <input
-                    type="text"
-                    name="phoneNumber"
-                    className="form-control form-control-lg bg-light fs-6 text-end"
-                    value={userData.phoneNumber}
-                    onChange={handleChange}
-                    placeholder=" رقم الهاتف"
-                  />{" "}
-                </div>{" "}
-                <div className="input-group mb-3">
-                  {" "}
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control form-control-lg bg-light fs-6"
-                    placeholder="كلمة المرور"
-                    value={userData.password}
-                    onChange={handleChange}
-                  />{" "}
-                </div>{" "}
-                <div className="input-group mb-5 d-flex justify-content-between">
-                  {" "}
-                  <div className="form-check">
-                    {" "}
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="formCheck"
-                    />{" "}
-                    <label
-                      htmlFor="formCheck"
-                      className="form-check-label text-secondary"
-                    >
-                      <small>أوافق على الشروط والأحكام</small>
-                    </label>
-                  </div>{" "}
-                </div>{" "}
-                <div className="input-group mb-3">
-                  {" "}
-                  <button
-                    className="btn btn-lg btn-success w-100 fs-6"
-                    type="submit"
-                  >
-                    {" "}
-                    إنشاء الحساب{" "}
-                  </button>{" "}
-                  {isSubmitted ? (
-                    <div className="alert alert-success" role="alert">
-                      تم تسجيل المستخدم بنجاح تستطيع الآن
-                      <Link href="/report">تسجيل الدخول</Link>.
-                    </div>
-                  ) : submitError ? (
-                    <div className="alert alert-danger" role="alert">
-                      {submitError}
-                    </div>
-                  ) : null}
-                </div>
-                <div className="row">
-                  {" "}
-                  <Link href="/login-user" className="link-success">
-                    {" "}
-                    املك حساب{" "}
-                  </Link>{" "}
-                </div>{" "}
-              </div>{" "}
-            </div>{" "}
-          </form>
-        </div>{" "}
-      </div>{" "}
+              <h2>إنشاء حساب جديد</h2>
+            </div>
+            <div
+              style={{
+                marginBottom: "20px",
+              }}
+            >
+              <input
+                type="text"
+                name="name"
+                style={{
+                  padding: "10px",
+                  fontSize: "16px",
+                  borderRadius: "10px",
+                  border: "1px solid #ccc",
+                  width: "100%",
+                }}
+                placeholder="الاسم الكامل"
+                value={userData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div
+              style={{
+                marginBottom: "20px",
+              }}
+            >
+              <input
+                type="text"
+                name="phoneNumber"
+                style={{
+                  padding: "10px",
+                  fontSize: "16px",
+                  borderRadius: "10px",
+                  border: "1px solid #ccc",
+                  width: "100%",
+                  textAlign: "right",
+                }}
+                value={userData.phoneNumber}
+                onChange={handleChange}
+                placeholder=" رقم الهاتف"
+              />
+            </div>
+            <div
+              style={{
+                marginBottom: "20px",
+              }}
+            >
+              <input
+                type="password"
+                name="password"
+                style={{
+                  padding: "10px",
+                  fontSize: "16px",
+                  borderRadius: "10px",
+                  border: "1px solid #ccc",
+                  width: "100%",
+                }}
+                placeholder="كلمة المرور"
+                value={userData.password}
+                onChange={handleChange}
+              />
+            </div>
+            <div
+              style={{
+                marginBottom: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  style={{
+                    marginRight: "10px",
+                  }}
+                />
+                <label
+                  style={{
+                    fontSize: "14px",
+                    color: "#666",
+                  }}
+                >
+                  <small>أوافق على شروط الاستخدام</small>
+                </label>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  style={{
+                    padding: "10px 20px",
+                    fontSize: "16px",
+                    color: "#fff",
+                    backgroundColor: "#28a745",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  تسجيل الدخول
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

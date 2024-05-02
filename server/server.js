@@ -16,12 +16,11 @@ app.use(
 );
 
 app.use(express.json());
-app.use("/api/auth", user, manager, profile);
+app.use("/api/auth", user, manager);
 //app.use("/api/manager", manager);
-app.use("/api/auth/profile", profile);
 app.use(`/api/report`, report);
-app.use(`/api/community`, community, vote);
-//app.use("/api/vote", vote);
+app.use(`/api/community`, community);
+app.use("/api/vote/submit-vote", vote);
 
 app.listen(5000, () => {
   console.log("app is listining in 5000 ");

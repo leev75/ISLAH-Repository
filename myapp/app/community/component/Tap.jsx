@@ -2,12 +2,45 @@
 import React, { useEffect, useState } from "react";
 import PlaceContainer from "./Placeholder";
 import { useAuth } from "@/app/hook/useAuth";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
 
-function Tap() {
+import styles from "@/public/css/other.css/community.css";
+
+// Define SortContainer outside of Tap component
+const SortContainer = ({ reports, reportVote }) => {
+  const [sortBy, setSortBy] = useState("date");
+
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  return (
+    <div className="sort-container">
+      <label htmlFor="sortBy" className="sort-label">
+        Sort by:
+      </label>
+      <select
+        id="sortBy"
+        className="sort-select"
+        onChange={handleSortChange}
+        value={sortBy}
+      >
+        <option value="date">Date</option>
+        <option value="voteCount">Number of Votes</option>
+      </select>
+
+      {/* Render PlaceContainer based on the selected option */}
+      {sortBy === "date" && (
+        <PlaceContainer xs={30} size="lg" reports={reports} />
+      )}
+      {sortBy === "voteCount" && (
+        <PlaceContainer xs={30} size="lg" reports={reportVote} />
+      )}
+    </div>
+  );
+};
+
+const Tap = () => {
   const { authToken } = useAuth();
-
   const [reports, setReports] = useState([]);
   const [reportVote, setReportsVote] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,6 +59,7 @@ function Tap() {
 
         if (res.ok) {
           const data = await res.json();
+
           setReports(data);
         } else {
           const errorMessage = await res.text();
@@ -33,7 +67,7 @@ function Tap() {
         }
       } catch (error) {
         console.error(error);
-        setError(error.message || "An error occurred. Please try again.");
+        setError(error.message, "An error occurred. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -62,7 +96,7 @@ function Tap() {
         }
       } catch (error) {
         console.error(error);
-        setError(error.message || "An error occurred. Please try again.");
+        setError(error.message, "An error occurred. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -79,27 +113,9 @@ function Tap() {
     return <div>Error: {error}</div>;
   }
 
-  return (
-    <>
-      <Tabs
-        defaultActiveKey="Report DashBaord"
-        id="fill-tab-example"
-        className="mb-3"
-        fill
-      >
-        <Tab eventKey="sort by Date" title="sort by Date">
-          <div className="flex-container">
-            <PlaceContainer xs={30} size="lg" reports={reportVote} />
-          </div>
-        </Tab>
-        <Tab eventKey="sort by Vote" title="sort by Vote">
-          <div className="flex-container">
-            <PlaceContainer xs={30} size="lg" reports={reports} />
-          </div>
-        </Tab>
-      </Tabs>
-    </>
-  );
-}
+  // Render SortContainer
+  return <SortContainer reports={reports} reportVote={reportVote} />;
+  // return
+};
 
 export default Tap;

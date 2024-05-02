@@ -3,11 +3,7 @@ const cors = require(`cors`);
 const cookieParser = require("cookie-parser");
 
 const checkAuthentication = require("../middleware/checkAuth");
-const {
-  submitVote,
-  getUserVotes,
-  getReportVotes,
-} = require(`../controllers/vote`);
+const { submitVote } = require(`../controllers/vote`);
 
 const router = express.Router();
 router.use(express.json());
@@ -16,6 +12,6 @@ router.use(cookieParser());
 
 //post/remove a new vote
 
-router.post("/submit-vote", submitVote);
+router.post("/", checkAuthentication, submitVote);
 
 module.exports = router;

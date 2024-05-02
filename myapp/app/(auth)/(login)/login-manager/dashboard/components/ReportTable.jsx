@@ -82,7 +82,10 @@ function ReportTable({ managerCategory, managerAuthToken }) {
               <td>{user.votes}</td>
               <td>{user.status}</td>
               <td>
-                <ChangeStatus />
+                <ChangeStatus
+                  report_id={user.report_id}
+                  managerAuthToken={managerAuthToken}
+                />
               </td>
             </tr>
           ))}
