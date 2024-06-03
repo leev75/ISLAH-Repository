@@ -1,0 +1,256 @@
+/* Base styles for the page */
+.background {
+  font-family: "Arial", sans-serif; /* Default font for consistency */
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(50, 172, 109) 0%,
+    rgb(209, 251, 155) 100.2%
+  );
+  color: #333; /* Dark grey for text for readability */
+  padding: 20px; /* Padding around the content */
+}
+
+.main-heading {
+  color: #065f46; /* Dark green for contrast */
+  font-size: 30px; /* Larger font size for emphasis */
+  text-align: center; /* Center alignment for the heading */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
+  margin-top: 10px;
+  margin-bottom: 10px; /* Space below the heading */
+}
+.content-container,
+.dashboard-row {
+  display: flex;
+  padding: 20px;
+  align-items: center; /* Opt for a consistent alignment or adjust as necessary */
+}
+
+.content-container {
+  justify-content: space-between;
+  align-items: stretch; /* Adjust if necessary for design requirements */
+}
+
+.dashboard-row {
+  justify-content: space-around;
+  flex-wrap: wrap; /* Maintain if necessary for responsive behavior */
+}
+
+.tab-pan {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(50, 172, 109) 0%,
+    rgb(209, 251, 155) 100.2%
+  );
+}
+.table-container {
+  width: 90%; /* Fixed width or any specific width */
+  height: 480px; /* Fixed height */
+  overflow: auto; /* Enables scrolling for both axes */
+  margin: 20px; /* Just for some spacing around the table */
+  border: 1px solid #fff; /* Adding a border for better visibility */
+}
+
+.table-container2 {
+  width: 750px; /* Fixed width or any specific width */
+  height: 60px; /* Fixed height */
+  overflow: auto; /* Enables scrolling for both axes */
+  margin: 20px; /* Just for some spacing around the table */
+  border: 1px solid #fff; /* Adding a border for better visibility */
+}
+
+.userTab {
+  width: 80%;
+}
+
+.table-container,
+.sponsor-container {
+  flex: 1; /* Each takes up equal space */
+  width: 50%; /* Explicitly sets each container to take half the width */
+  display: flex;
+  flex-direction: column; /* Allows vertical stacking of internal content */
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden; /* Prevents content from spilling out */
+}
+
+.row3 {
+  flex: 1; /* Distributes space evenly among all row3 elements */
+  margin: 10px 0; /* Adds top and bottom margin for separation */
+  padding: 20px;
+  height: 200px;
+  border: 1px solid #dee2e6; /* Adds a subtle border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
+}
+
+.pie-chart-container {
+  width: 800px; /* Ensures the container fits the width of its parent */
+  max-width: 1000px; /* Limits the size of the chart */
+  height: 200px; /* Maintains aspect ratio */
+  margin: 20px auto; /* Centers the chart horizontally in the parent and adds spacing */
+  padding: 10px; /* Adds padding around the canvas */
+  background-color: #dcd8d8; /* Gives a light grey background to the chart container */
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
+  border-radius: 10px; /* Rounds the corners of the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+}
+
+.pie-chart-canvas {
+  width: 100% !important; /* Forces the canvas to expand to fill its container */
+  height: 180pxpx !important; /* Maintains aspect ratio */
+  aspect-ratio: 1; /* Ensures the chart is always square regardless of container size */
+}
+
+.sponsor-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; /* Ensures even distribution of space */
+  /* Ensures it fills the parent's height */
+  margin-left: 10px;
+  margin: 20px;
+  padding-bottom: 10px;
+}
+
+/* Styling for the category heading */
+.category-heading {
+  color: #1ce358; /* Retain the vibrant green for emphasis */
+  font-size: 24px; /* Reduce the size for a more refined look */
+  text-align: center; /* Center align text to enhance visual balance */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05); /* Soften the text shadow for subtlety */
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
+  border-radius: 8px; /* Increase border radius for a softer, modern edge */
+  padding: 10px 20px; /* Reduce padding for a slimmer appearance */
+  margin-top: 10px; /* Reduce top margin */
+  margin-bottom: 10px; /* Reduce bottom margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a light box shadow for depth */
+}
+
+.category-heading:hover {
+  transform: translateY(-10px);
+}
+
+.sort-selector {
+  margin-left: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.userTableContainer {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Black Han Sans", sans-serif;
+}
+
+.toast {
+  margin-top: 20px;
+}
+
+.dashboard-image {
+  width: 50px; /* Adjust size as needed */
+  height: auto;
+  margin: 20px;
+}
+
+/*.dashboard-row {
+  display: flex;
+  justify-content: space-around;
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(50, 172, 109) 0%,
+    rgb(209, 251, 155) 100.2%
+  );
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}*/
+
+.image-gg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #386a10;
+  border-radius: 20px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center; /* Vertically aligns the items in the center */
+  gap: 20px; /* Adds space between the text and the image */
+  margin-left: 60px;
+}
+
+.dashboard-container {
+  flex: 1 1 300px; /* Allows each container to grow and have a base width of 300px */
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-container:hover {
+  transform: translateY(-10px);
+}
+
+.dashboard-text {
+  color: #333;
+}
+
+.dashboard-text h2 {
+  margin-bottom: 0.5rem;
+  font-size: 24px;
+  color: #1ce358; /* Bootstrap primary color */
+}
+
+.dashboard-text p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.animate-text {
+  animation: pop-in 0.6s ease-out forwards;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-row {
+    flex-direction: column;
+  }
+}
+
+.tab-pan {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(50, 172, 109) 0%,
+    rgb(209, 251, 155) 100.2%
+  );
+}

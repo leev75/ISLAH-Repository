@@ -42,7 +42,7 @@ function ReportSection({ report }) {
   const EditHandleClick = async (report_id) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/report/edite-report/${report_id}`,
+        `http://localhost:5000/api/report/edit-report/${report_id}`,
         {
           method: "PUT",
           headers: {
@@ -56,7 +56,7 @@ function ReportSection({ report }) {
       if (res.ok) {
         const data = await res.json();
         setEditMode(null);
-        alert(data);
+        alert("the edit is done");
       } else {
         const errorMessage = await res.text();
         setErrorMessage(errorMessage);

@@ -1,75 +1,111 @@
 "use client";
+import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import UserTable from "./UserTable";
 import { useManagerAuth } from "@/app/hook/useAuthManager";
 import ReportTable from "./ReportTable";
-import Reportchart from "./Reportchart";
+import "./style.css";
 
 function SidebarContainer() {
   const { managerCategory, managerAuthToken } = useManagerAuth();
-  console.log(managerAuthToken);
+  const [activeKey, setActiveKey] = useState("Report DashBaord");
+
+  const handleSelect = (key) => {
+    setActiveKey(key); // Update the active key state
+  };
+
   return (
     <div className="sidebar-container">
       <Tabs
-        defaultActiveKey="Report DashBaord"
+        activeKey={activeKey}
+        onSelect={handleSelect}
         id="fill-tab-example"
         className="mb-3 tabs-container"
         fill
+        transition={false} // Disable default fading transition
       >
-        <Tab eventKey="Report DashBaord" title="Report DashBaord">
-          <div className="tab-content">
+        <Tab eventKey="Report DashBaord">
+          <div
+            className={`tab-content ${
+              activeKey === "Report DashBaord" ? "active" : ""
+            }`}
+          >
             <ReportTable
               managerCategory={managerCategory}
               managerAuthToken={managerAuthToken}
-              className="report-table"
+              className="able"
             />
-          </div>
-        </Tab>
-        <Tab eventKey="User DashBaord" title="User DashBaord">
-          <div className="tab-content">
-            <UserTable
-              managerCategory={managerCategory}
-              managerAuthToken={managerAuthToken}
-              className="user-table"
-            />
-            <Reportchart className="report-chart" />
           </div>
         </Tab>
       </Tabs>
       <style jsx>{`
         .sidebar-container {
-          padding: 20px;
-          background-color: #f7f7f7;
-          border: 1px solid #ddd;
+          border: 1px solid #fff;
           border-radius: 10px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease; /* Transition for click effect */
         }
 
         .tabs-container {
-          margin-top: 20px;
+          margin-bottom: 20px;
         }
 
         .tab-content {
           padding: 20px;
+          border: 1px solid #dee2e6;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+          transition: opacity 0.5s ease-in-out;
+          transform: scale(1); /* Default scale */
         }
 
-        .text-des {
-          text-align: center;
-          font-size: 14px;
-          color: #666;
+        .tab-content:not(.active) {
+          display: none;
         }
 
-        .report-table {
-          margin-bottom: 20px;
+        .tab-content.active {
+          animation: fadeIn 0.5s;
         }
 
-        .user-table {
-          margin-bottom: 20px;
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
 
-        .report-chart {
-          margin-top: 20px;
+        /* Adding hover effect to simulate a click response */
+        .tabs-container .nav-link.active {
+          transform: scale(0.97); /* Slightly reduce size when active */
+          transition: transform 0.3s ease;
+        }
+
+        /* Styling for tab titles */
+        .nav-link {
+          font-size: 18px; /* Larger font size for better readability */
+          color: #046307; /* Dark green for a thematic color scheme */
+          font-weight: bold; /* Makes the title text bold */
+          text-transform: uppercase; /* UPPERCASE text for a more standout look */
+          padding: 12px 20px; /* Adequate padding for better clickability and spacing */
+          border-radius: 5px; /* Rounded corners for a softer appearance */
+          background-color: #e4f5e9; /* Soft green background to highlight active tabs */
+          transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        /* Hover effect for tab titles */
+        .nav-link:hover {
+          background-color: #cdecd1; /* Lighter green on hover for interactivity */
+          color: #023d02; /* Darker text color on hover */
+        }
+
+        /* Extra styling for the active tab to make it distinct */
+        .nav-link.active {
+          background-color: #a2d9ce; /* A distinct green shade for active tab */
+          color: #012e01; /* Dark green text color for contrast on active tab */
+          box-shadow: 0 2px 8px rgba(0, 100, 0, 0.2); /* Subtle shadow for depth */
         }
       `}</style>
     </div>

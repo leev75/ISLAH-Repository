@@ -4,6 +4,23 @@
     display: block;
     height: 100px;
 }*/
+/* styles.css */
+
+.full-height-width {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-layout {
+  background-color: #e2e8f0; /* light gray */
+  padding: 16px;
+  border-radius: 8px;
+  min-height: 600px; /* minimum height */
+  flex: 1; /* Takes up all available space */
+  box-sizing: border-box; /* Includes padding in height calculation */
+}
 
 /* Navbar */
 /* Navbar */
@@ -14,85 +31,51 @@
   padding: 10px 0; /* Padding for the navbar */
   text-align: center; /* Center-align text */
 }
-
-/* Sort dropdown */
+/* Style for the container */
 .sort-container {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center; /* Aligns the label and select box vertically */
+  margin: 20px 0; /* Provides some space around the container */
+  font-family: "Arial", sans-serif; /* Modern, readable font */
 }
 
+/* Style for the label */
 .sort-label {
-  font-weight: bold;
+  margin-right: 10px; /* Space between the label and the select box */
+  color: #666; /* Sophisticated grey color for readability */
+  font-size: 16px; /* Optimal size for readability */
+  font-weight: bold; /* Makes the label more prominent */
 }
 
+/* General style for the select box */
 .sort-select {
-  padding: 8px 12px;
-  border-radius: 5px;
-  border: 1px solid #28a745; /* Green */
-  background-color: #fff;
-  color: #333;
-  font-size: 16px;
-  cursor: pointer;
+  padding: 10px 15px; /* Padding for a comfortable click area */
+  border-radius: 20px; /* Rounded corners for a modern look */
+  border: 2px solid #000000; /* Stylish green border */
+  background-color: #fff; /* White background to contrast the border */
+  color: #333; /* Text color */
+  cursor: pointer; /* Indicates the element is selectable */
+  appearance: none; /* Removes default styling by the browser */
+  outline: none; /* Removes the outline to control focus style manually */
+  transition: all 0.3s ease; /* Smooth transitions for interaction */
+  position: relative; /* Needed for absolute positioning of the pseudo-elements */
 }
 
 .sort-select:focus {
-  outline: none;
-  border-color: #218838; /* Darker Green */
+  border-color: #53a653; /* Enhanced green for focus */
 }
 
-/* Examples */
-.examples-container {
-  display: flex;
-  flex-direction: column; /* Change to column layout */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  min-height: calc(
-    100vh - 120px
-  ); /* Set minimum height to fill viewport minus navbar height and padding */
-  margin: 0 auto; /* Center horizontally */
-  max-width: 800px; /* Set maximum width */
+.sort-select:hover {
+  background-color: #f8f8f8; /* Light grey background on hover */
 }
 
-.example {
-  width: 100%; /* Occupy full width */
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.example-image {
-  max-width: 100%; /* Set maximum width */
-  max-height: 250px; /* Set maximum height */
-  height: auto; /* Ensure aspect ratio is maintained */
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.info {
-  margin-bottom: 15px;
-}
-
-.info span {
-  font-weight: bold;
-  color: #333;
-}
-
-.vote-button-container {
-  display: flex;
-  align-items: center;
-}
-
-.vote-button {
-  padding: 10px 20px;
-  background-color: #28a745; /* Green */
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.vote-button:hover {
-  background-color: #218838;
+/* Custom arrow using pseudo-elements */
+.sort-select::after {
+  content: "▼";
+  font-size: 12px;
+  color: #4caf50; /* Arrow color matches the border */
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }

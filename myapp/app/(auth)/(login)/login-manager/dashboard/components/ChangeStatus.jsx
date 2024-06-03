@@ -1,6 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
-function changeStatus({ report_id, managerAuthToken }) {
+function changeStatus({ report_id, managerAuthToken, status }) {
   const updateStatus = async (status) => {
     console.log(status);
     try {
@@ -24,10 +24,8 @@ function changeStatus({ report_id, managerAuthToken }) {
   };
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Reported
-      </Dropdown.Toggle>
-
+      <Dropdown.Toggle variant="success" id="dropdown-basic"></Dropdown.Toggle>
+      {status}
       <Dropdown.Menu variant="dark">
         <Dropdown.Item onClick={() => updateStatus("In Progress")}>
           In Progress

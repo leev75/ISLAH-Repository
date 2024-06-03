@@ -1,6 +1,7 @@
+"use client";
 import { Button } from "react-bootstrap";
 import Link from "next/link";
-import Image from "next/image";
+import { Image } from "react-bootstrap";
 import styles from "@/public/css/all.css/style.css";
 import Carousel from "react-bootstrap/Carousel";
 import ExampleCarouselImage from "@/public/imgs/homepagepic2.svg";
@@ -92,48 +93,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <div className="carousel-inner">
-        <div className="carousel-item active" data-bs-interval={10000}>
-          <Image
-            src="/imgs/sponsors/sonalgaz.svg"
-            className="d-block mx-auto carousel-img"
-            alt="Sonalgaz"
-            width={100} // add width and height attributes
-            height={100}
-          />
-          <div className="carousel-caption d-none d-md-block"></div>
-        </div>
-        <div className="carousel-item" data-bs-interval={2000}>
-          <Image
-            src="public/imgs/sponsors/ade.svg"
-            className="d-block mx-auto carousel-img "
-            alt="ADE"
-            width={100} // add width and height attributes
-            height={100}
-          />
-          <div className="carousel-caption d-none d-md-block"></div>
-        </div>
-        <div className="carousel-item" data-bs-interval={2000}>
-          <Image
-            src="public/imgs/ona.svg"
-            className="d-block mx-auto carousel-img "
-            alt="ONA-dz"
-            width={150} // add width and height attributes
-            height={150}
-          />
-          <div className="carousel-caption d-none d-md-block"></div>
-        </div>
-        <div className="carousel-item">
-          <Image
-            src="public/imgs/sponsors/algerie-tele.svg"
-            className="d-block mx-auto carousel-img "
-            alt="ALGERIE TELECOM"
-            width={180} // add width and height attributes
-            height={180}
-          />
-        </div>
-      </div>
     </>
   );
 }

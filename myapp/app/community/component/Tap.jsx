@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import PlaceContainer from "./Placeholder";
 import { useAuth } from "@/app/hook/useAuth";
-
-import styles from "@/public/css/other.css/community.css";
+import Container from "react-bootstrap/Container";
+import "./layout.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // Define SortContainer outside of Tap component
 const SortContainer = ({ reports, reportVote }) => {
@@ -14,27 +16,30 @@ const SortContainer = ({ reports, reportVote }) => {
   };
 
   return (
-    <div className="sort-container">
-      <label htmlFor="sortBy" className="sort-label">
-        Sort by:
-      </label>
-      <select
-        id="sortBy"
-        className="sort-select"
-        onChange={handleSortChange}
-        value={sortBy}
-      >
-        <option value="date">Date</option>
-        <option value="voteCount">Number of Votes</option>
-      </select>
-
-      {/* Render PlaceContainer based on the selected option */}
-      {sortBy === "date" && (
-        <PlaceContainer xs={30} size="lg" reports={reports} />
-      )}
-      {sortBy === "voteCount" && (
-        <PlaceContainer xs={30} size="lg" reports={reportVote} />
-      )}
+    <div>
+      <div className="sort-container">
+        <label htmlFor="sortBy" className="sort-label">
+          Sort by:
+        </label>
+        <div className="custom-select-wrapper">
+          <select
+            id="sortBy"
+            className="sort-select"
+            onChange={handleSortChange}
+            value={sortBy}
+          >
+            <option value="date">Date</option>
+            <option value="voteCount">Number of Votes</option>
+          </select>
+        </div>
+      </div>
+      <div className="hello">
+        {/* Render PlaceContainer based on the selected option */}
+        {sortBy === "date" && <PlaceContainer size="lg" reports={reports} />}
+        {sortBy === "voteCount" && (
+          <PlaceContainer size="lg" reports={reportVote} />
+        )}
+      </div>
     </div>
   );
 };
@@ -114,7 +119,11 @@ const Tap = () => {
   }
 
   // Render SortContainer
-  return <SortContainer reports={reports} reportVote={reportVote} />;
+  return (
+    <div className="gradiante">
+      <SortContainer reports={reports} reportVote={reportVote} />
+    </div>
+  );
   // return
 };
 

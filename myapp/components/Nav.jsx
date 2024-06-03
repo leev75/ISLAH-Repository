@@ -22,7 +22,11 @@ function Nav() {
   return (
     <nav
       className="navbar navbar-expand-sm fixed-top"
-      style={{ background: "#34C759", padding: "0 1rem" }}
+      style={{
+        background:
+          "radial-gradient(circle at 10% 20%, rgb(50, 172, 109) 0%, rgb(209, 251, 155) 100.2%)",
+        padding: "0 1rem",
+      }}
     >
       <div className="container-fluid d-flex flex-row-reverse">
         <Link

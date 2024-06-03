@@ -57,8 +57,8 @@ const login = async (req, res) => {
 
 //validation
 const validate = async (req, res) => {
-  const { status,report_id } = req.body;
-  
+  const { status, report_id } = req.body;
+
   console.log(status);
   console.log(report_id);
 
@@ -105,46 +105,42 @@ const logout = (req, res) => {
   res.send("Logged out");
   res.redirect(`/`);
 };
-const totalReports = async (req, res) => {
-  const authHeader = req.header("Authorization");
-  const token = authHeader.split(" ")[1];
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+const totalReports = async (req, res) => {
+  const managerCategory = req.body.managerCategory;
 
   try {
-    const reportedCount = await prisma.raport.count({
+    const completedCount = await prisma.raport.count({
       where: {
-        categorie: decoded.categorie,
-        status: "Reported",
+        categorie: managerCategory,
+        status: "Completed",
       },
     });
 
     const inProgressCount = await prisma.raport.count({
       where: {
-        categorie: decoded.categorie,
-        status: "In_Progress",
+        categorie: managerCategory,
+        status: "In Progress",
       },
     });
 
-    const rejectedCount = await prisma.raport.count({
+    const reportedCount = await prisma.raport.count({
       where: {
-        categorie: decoded.categorie,
-        status: "refused",
+        categorie: managerCategory,
+        status: "Reported",
       },
     });
 
     const data = {
-      labels: ["Reported", "In Progress", "Rejected"],
-      counts: [reportedCount, inProgressCount, rejectedCount],
+      completedCount,
+      inProgressCount,
+      reportedCount,
     };
 
     res.status(200).json(data);
   } catch (error) {
     console.error(error);
-    res.status(500).json({
-      labels: [],
-      counts: [],
-    });
+    res.status(500).json({ message: "No Stats data" });
   }
 };
 

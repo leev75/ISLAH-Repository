@@ -38,8 +38,7 @@ function LoginManager() {
         const data = await res.json();
         const { managerToken, categorie } = data;
         managerLogin(managerToken, categorie);
-        console.log(categorie);
-        alert("تم تسجيل الدخول"); // Using alert for simplicity; consider more integrated UI feedback
+        alert(" تم تسجيل الدخول"); // Using alert for simplicity; consider more integrated UI feedback
         setIsSubmitted(true);
         setSubmitError("");
       } else {

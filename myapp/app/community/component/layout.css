@@ -1,0 +1,279 @@
+/* community.css */
+/* global.css */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.background {
+  font-family: "IBM Plex Sans Arabic", sans-serif; /* Corrected property name and quotes around the font name */
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(50, 172, 109) 0%,
+    rgb(209, 251, 155) 100.2%
+  ); /* Corrected property name */
+  background-size: cover; /* Removed quotes around the value */
+  background-position: center; /* Removed quotes around the value */
+  width: 100%;
+  display: center; /* Use flexbox to center contents */
+  align-items: center;
+}
+
+.gradient {
+  position: relative;
+  background-image: "/wave.png";
+  border-radius: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.gradient::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: inherit; /* Continue the gradient from the parent */
+  border-radius: 100% 100% 0 0; /* Rounded curve at the bottom */
+  transform: scaleY(1.5); /* Stretch the curve to make it more evident */
+  transform-origin: bottom; /* Ensures the transformation stretches from the bottom */
+}
+
+.hello {
+  width: 100%;
+  display: flex; /* Use flexbox to center contents */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  /* Center vertically if needed */
+}
+
+.examples-container {
+  width: 1600px; /* Adjust width as needed to not span the full page width */
+  margin: 0 auto; /* Auto margins for horizontal centering */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Three columns of equal width */
+  gap: 10px; /* Increase the gap for better spacing */
+  padding: 10px; /* Padding around the grid */
+}
+
+.example {
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-items: baseline;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.example:hover {
+  transform: scale(1.03); /* Slightly enlarge the card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Adding to your existing CSS */
+.example-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: relative; /* Allows absolute positioning within */
+}
+
+.badge-overlay-Red {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: rgba(182, 33, 33, 0.95); /* Semi-transparent blue */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.badge-overlay-Green {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: rgba(34, 153, 7, 0.95); /* Semi-transparent blue */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.badge-overlay-Gray {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: rgba(128, 126, 121, 0.95); /* Semi-transparent blue */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.badge-overlay-Orange {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: rgba(242, 171, 5, 0.95); /* Semi-transparent blue */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.badge-overlay-Red {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: rgba(182, 33, 33, 0.95); /* Semi-transparent blue */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.info {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.vote-button-container {
+  padding: 18px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vote-count {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-size: 0.9em;
+}
+@media (max-width: 992px) {
+  .examples-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .examples-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cool-span {
+  display: inline-block;
+  background-color: #f4f4e8; /* Light, aged paper-like background */
+  color: #3a6b35; /* Muted green for a vintage look */
+  padding: 8px 16px;
+  border-radius: 4px; /* Slightly rounded edges */
+  border: 1px solid #8a977d; /* Subtle border in a complementary green shade */
+  font-family: "Times New Roman", serif; /* Classic print font */
+  font-size: 18px;
+  text-shadow: 1px 1px 0px #fff; /* Subtle white text shadow for a worn look */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for interactive effects */
+  cursor: pointer; /* Indicates interactivity */
+}
+
+.cool-span:hover {
+  color: #2e4f2f; /* Darker green on hover for more depth */
+  background-color: #e4e4d9; /* Slightly darker background on hover */
+  transform: translateY(-1px); /* Subtle movement on hover */
+}
+
+.button {
+  background-color: #4caf50; /* Vibrant green background */
+  color: white; /* White text color for contrast */
+  border: none; /* No border for a modern look */
+  padding: 10px 20px; /* Adequate padding for comfortable clicking */
+  border-radius: 5px; /* Slightly rounded corners */
+  font-family: "Arial", sans-serif; /* Modern, readable font */
+  font-size: 16px; /* Optimal text size for readability */
+  text-transform: uppercase; /* Makes the text uppercase for a more impactful appearance */
+  cursor: pointer; /* Cursor changes to a pointer to indicate interactiveness */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease; /* Smooth transitions for interaction */
+}
+
+.button:hover {
+  background-color: #367c39; /* Darker green on hover for visual feedback */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover for a "lifted" effect */
+  transform: translateY(-2px); /* Slight upward shift to indicate interaction */
+}
+
+.button:active {
+  background-color: #2e6531; /* Even darker green for the active state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow to simulate pressing down */
+  transform: translateY(1px); /* Moves slightly down when clicked */
+}
+
+/* styles.css - Ensure this file is correctly imported in your project */
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sort-label {
+  margin-right: 15px;
+  color: #2c3e50; /* Sophisticated dark blue */
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sort-select {
+  padding: 10px 20px;
+  border-radius: 30px; /* More pronounced rounded corners */
+  border: 1px solid #2c3e50; /* Dark blue border */
+  background-color: white;
+  color: #2c3e50;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  position: relative;
+  transition: all 0.3s ease;
+  width: 200px; /* Fixed width */
+  font-size: 16px;
+}
+
+.sort-select:hover {
+  background-color: #ecf0f1;
+}
+
+.sort-select:focus {
+  border-color: #3498db; /* Bright blue for focus */
+}
+
+/* Custom arrow styling */
+.sort-select::after {
+  content: "▼";
+  font-family: Arial, sans-serif;
+  position: absolute;
+  right: 15px;
+  top: 11px;
+  color: #2c3e50;
+  pointer-events: none; /* Makes sure clicks pass through to the select element */
+}

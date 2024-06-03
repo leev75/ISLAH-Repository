@@ -3,12 +3,15 @@ import { useAuth } from "../hook/useAuth";
 import CustomLayout from "./component/CustomLayout";
 import PlaceContainer from "./component/Placeholder";
 import { Link } from "react-router-dom"; // add this line
+import "./component/layout.css";
 
 function Page() {
   const { isLoggedIn } = useAuth();
 
   return isLoggedIn ? (
-    <CustomLayout />
+    <div className="background">
+      <CustomLayout />
+    </div>
   ) : (
     // Login prompt if not logged in
     <div className="container mt-5">

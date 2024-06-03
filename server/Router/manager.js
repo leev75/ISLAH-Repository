@@ -31,7 +31,7 @@ router.put(`/validate/`, checkAuthManager, validate);
 //get hourly reports
 router.get(`/hourly-reports`, checkAuthManager, hourlyReports);
 //get total reports
-router.get(`/total-reports`, checkAuthManager, totalReports);
+router.post(`/total-reports`, checkAuthManager, totalReports);
 
 //manager logout
 // @desc Logout
