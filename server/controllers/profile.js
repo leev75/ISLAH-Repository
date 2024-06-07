@@ -3,7 +3,9 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const profile = async (req, res) => {
-  const token = req.cookies.token;
+  const authHeader = req.header("Authorization");
+  const token = authHeader.split(" ")[1];
+
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
   const sortBy = req.query.sortBy || date;

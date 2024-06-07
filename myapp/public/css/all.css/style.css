@@ -18,10 +18,7 @@ body::before {
   margin: 10px;
 }
 
-
-
 /* components/Loading.module.css */
-
 
 .navbar {
   background-color: #f2f2f2;
@@ -1278,9 +1275,7 @@ body::before {
   margin-left: var(--fa-li-margin, 2.5em);
   padding-left: 0;
 }
-.fa-ul > li {
-  position: relative;
-}
+
 .fa-li {
   left: calc(var(--fa-li-width, 2em) * -1);
   position: absolute;

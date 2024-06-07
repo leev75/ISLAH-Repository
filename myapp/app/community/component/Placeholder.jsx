@@ -1,6 +1,4 @@
-"use client";
 import React from "react";
-import styles from "@/public/css/other.css/community.css"; // Ensure the path is correct
 import VoteButton from "./VoteButton";
 import "./layout.css"; // Ensure the path is correct
 

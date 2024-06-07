@@ -170,7 +170,8 @@ function ReportTable({ managerCategory, managerAuthToken }) {
         <div className="sponsor-container">
           {/* Sponsor content here */}
 
-          <PieChart />
+          <PieChart managerCategory={managerCategory}
+            managerAuthToken={managerAuthToken}/>
 
           <UserTable
             className="table-container2"

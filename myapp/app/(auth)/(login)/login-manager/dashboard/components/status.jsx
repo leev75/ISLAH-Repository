@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import { Image } from "react-bootstrap";
 
-export function useReports() {
-  return useContext(ReportContext);
-}
-
 function Status({ managerCategory, managerAuthToken }) {
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(true);

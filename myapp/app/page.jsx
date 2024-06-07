@@ -1,10 +1,4 @@
-"use client";
-import { Button } from "react-bootstrap";
-import Link from "next/link";
 import { Image } from "react-bootstrap";
-import styles from "@/public/css/all.css/style.css";
-import Carousel from "react-bootstrap/Carousel";
-import ExampleCarouselImage from "@/public/imgs/homepagepic2.svg";
 
 function Home() {
   return (
@@ -29,7 +23,7 @@ function Home() {
           </div>
           <div>
             <Image
-              src="/imgs/homepagepic2.svg"
+              src="/imgs/gg/homepagepic2.svg"
               alt=""
               width={400} // add width and height attributes
               height={300}

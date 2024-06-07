@@ -40,9 +40,9 @@ const ReportForm = () => {
 
   const categories = [
     { value: "water", label: "Water" },
-    { value: "Electricity/Gaz", label: "Electricity/Gaz" },
+    { value: "Electricity / Gaz", label: "Electricity/Gaz" },
     { value: "ONA", label: "ONA" },
-    { value: "Telecommunication", label: "Telecommunication" },
+    { value: "Telecominication", label: "Telecommunication" },
   ];
 
   const handleSubmit = async (e) => {
@@ -56,6 +56,7 @@ const ReportForm = () => {
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
+        "X-Timestamp": new Date().toISOString(), // Add current timestamp
         Authorization: `Bearer ${authToken}`, // Authentication token in headers
       },
     };

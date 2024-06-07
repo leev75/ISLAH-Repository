@@ -8,20 +8,19 @@ function Menu() {
   const [activeMenuItem, setActiveMenuItem] = useState("profile");
   const [report, setReports] = useState([]);
   const { authToken } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [Error, setError] = useState(null);
   console.log(report);
 
   useEffect(() => {
     const fetchReportsDate = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/auth/profile",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
+        const res = await fetch("http://localhost:5000/api/auth/profile", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
 
         if (res.ok) {
           const data = await res.json();

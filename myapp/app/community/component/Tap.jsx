@@ -2,10 +2,7 @@
 import React, { useEffect, useState } from "react";
 import PlaceContainer from "./Placeholder";
 import { useAuth } from "@/app/hook/useAuth";
-import Container from "react-bootstrap/Container";
 import "./layout.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 // Define SortContainer outside of Tap component
 const SortContainer = ({ reports, reportVote }) => {

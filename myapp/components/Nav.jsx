@@ -2,22 +2,31 @@
 import Link from "next/link";
 import Image from "next/image";
 import "@/public/css/all.css/style.css";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
 import { useAuth } from "@/app/hook/useAuth";
-import "@/components/BootstrapClient";
 import { useManagerAuth } from "@/app/hook/useAuthManager";
+
 function Nav() {
   const { isLoggedIn, logout } = useAuth();
   const { isManagerLoggedIn, managerLogout } = useManagerAuth();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Once the component mounts, we know it's client-side.
+  }, []);
+
+  // Handlers remain the same
   const handleLogoutManager = () => {
     managerLogout();
-    // Optionally add redirection or other logic post logout
   };
   const handleLogout = () => {
     logout();
-    // Optionally add redirection or other logic post logout
   };
+
+  if (!isClient) {
+    return null; // Or render placeholders/loading indicators
+  }
 
   return (
     <nav
@@ -43,9 +52,9 @@ function Nav() {
           />
           <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>إصلاح</span>
         </Link>
-        <button
+        <Button
           className="navbar-toggler"
-          type="button"
+          type="Button"
           data-bs-toggle="collapse"
           data-bs-target="#mainmenu"
           aria-controls="mainmenu"
@@ -54,7 +63,7 @@ function Nav() {
           style={{ background: "#fff", color: "#34C759", border: "none" }}
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </Button>
         <div className="collapse navbar-collapse ms-auto" id="mainmenu">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
@@ -148,66 +157,72 @@ function Nav() {
                 </li>
               </>
             ) : (
-              <Link
-                href="/login-user"
-                className="nav-link"
-                style={{
-                  color: "#fff",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "0.25rem",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                <Button
-                  variant="outline-success"
+              <li>
+                <Link
+                  href="/login-user"
+                  className="nav-link"
                   style={{
-                    background: "transparent",
-                    border: "none",
                     color: "#fff",
-                    padding: 0,
+                    padding: "0.5rem 1rem",
+                    borderRadius: "0.25rem",
+                    transition: "all 0.3s ease",
                   }}
                 >
-                  تسجيل الدخول للمستخدم
-                </Button>
-              </Link>
+                  <Button
+                    variant="outline-success"
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#fff",
+                      padding: 0,
+                    }}
+                  >
+                    تسجيل الدخول للمستخدم
+                  </Button>
+                </Link>
+              </li>
             )}
 
             {isManagerLoggedIn() ? (
-              <Button
-                variant="outline-success"
-                onClick={handleLogoutManager}
-                style={{
-                  color: "#fff",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "0.25rem",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                تسجيل خروج المدير
-              </Button>
-            ) : (
-              <Link
-                href="/login-manager"
-                className="nav-link"
-                style={{
-                  color: "#fff",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "0.25rem",
-                  transition: "all 0.3s ease",
-                }}
-              >
+              <li>
                 <Button
                   variant="outline-success"
+                  onClick={handleLogoutManager}
                   style={{
-                    background: "transparent",
-                    border: "none",
                     color: "#fff",
-                    padding: 0,
+                    padding: "0.5rem 1rem",
+                    borderRadius: "0.25rem",
+                    transition: "all 0.3s ease",
                   }}
                 >
-                  تسجيل الدخول للمدير
+                  تسجيل خروج المدير
                 </Button>
-              </Link>
+              </li>
+            ) : (
+              <li>
+                <Link
+                  href="/login-manager"
+                  className="nav-link"
+                  style={{
+                    color: "#fff",
+                    padding: "0.5rem 1rem",
+                    borderRadius: "0.25rem",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  <Button
+                    variant="outline-success"
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#fff",
+                      padding: 0,
+                    }}
+                  >
+                    تسجيل الدخول للمدير
+                  </Button>
+                </Link>
+              </li>
             )}
           </ul>
         </div>
